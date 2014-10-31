@@ -1,0 +1,3 @@
+Make sure you do not commit the Debug folder (or anything in it)
+
+Give your commit a good Summary/Description so we know what you changed or why.
