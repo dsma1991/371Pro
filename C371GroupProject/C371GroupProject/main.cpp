@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <GL/glut.h>   
-#include <math.h>
+#include "Model.h"
 
 typedef struct {
 	int width;
@@ -49,9 +47,9 @@ void display(void)
 	glPushMatrix();
 	glLoadIdentity();
 	gluLookAt(eyeX,eyeY,eyeZ,centerX,centerY,centerZ,0,1,0);
+	//gluLookAt(0, 0, 5, 0, 0, 0, 0, 1, 0); //using this to test my stuff -Arteum
 
 	glutSolidCube(20);
-
 	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
@@ -165,9 +163,6 @@ int main(int argc, char** argv)
 	glEnable(GL_LIGHT0);
 	GLfloat ambient[] = {1.0, 2.0, 3.0, 1.0};
 	glLightfv(GL_LIGHT0,GL_AMBIENT,ambient);*/
-
-	
-
 
 	glutIdleFunc(idleFunc);
 	glutKeyboardFunc(keyboard);		// set window's key callback 

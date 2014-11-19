@@ -1,8 +1,13 @@
 #pragma once
+#include "includeHeader.h"
+
+using namespace Eigen;
+
 class Model
 {
 public:
 	Model(void);
+	Model(double startX, double startY, double startZ);
 	~Model(void);
 	void draw();
 	void idle();
@@ -17,7 +22,8 @@ public:
 
 
 private:
-	double x,y,z;
+	double x, y, z;
+	Quaternion<double> orientation;
 	State currentState;
 
 	//model variable however it's done
