@@ -1,5 +1,6 @@
 #include "Model.h"
 #include "imageloader.h"
+#include "Terrain.h"
 
 typedef struct {
 	int width;
@@ -24,7 +25,10 @@ double vertAngle = 3*PI/4, horizAngle = PI/2;
 
 GLUquadricObj * quadratic;
 GLuint _skyboxTexture1;
+GLuint _terrainTexture1;
+
 float skyboxSize = 4000.0f;
+Terrain terrainObject;
 
 //Load image into texture
 GLuint loadTexture(Image* image){
@@ -56,6 +60,11 @@ void init(void)
     glClearDepth( 1.0f );														// specify the clear value for the depth buffer
     glEnable( GL_DEPTH_TEST );
     glDepthFunc( GL_LEQUAL );
+
+	//AntiAliasing
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );						// specify implementation-specific hints
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -65,6 +74,10 @@ void init(void)
 	Image* skyboxTexture = loadBMP("starrySky.bmp");
 	_skyboxTexture1 = loadTexture(skyboxTexture);
 	delete(skyboxTexture);
+
+	Image* terrainTexture = loadBMP("terrainTexture.bmp");
+	_terrainTexture1 = loadTexture(terrainTexture);
+	delete(terrainTexture);
 }
 
 void drawSkybox(){
@@ -163,7 +176,12 @@ void display(void)
 
 	glPushMatrix();
 	//glColor3f(1.0f, 0.0f, 0.0f);
-	drawSkybox();
+		drawSkybox();
+				//Terrain
+		glBindTexture(GL_TEXTURE_2D, _terrainTexture1);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		terrainObject.DrawTerrain();
 	//glutSolidCube(20);
 	glPopMatrix();
 
