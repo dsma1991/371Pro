@@ -150,21 +150,31 @@ void drawSkybox(){
 		glPopAttrib();
 	glPopMatrix();
 }
-
+Model temp = Model(0, 0, 0);
 void display(void)
 {	
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
 	glLoadIdentity();
 	gluLookAt(eyeX,eyeY,eyeZ,centerX,centerY,centerZ,0,1,0);
-	//gluLookAt(0, 0, 5, 0, 0, 0, 0, 1, 0); //using this to test my stuff -Arteum
+	//gluLookAt(0, 0, 50, 0, 0, 0, 0, 1, 0); //using this to test my stuff -Arteum
+
+	temp.moveTo(20, 50, -20);
 
 	glPushMatrix();
-//	glColor3f(1.0f, 0.0f, 0.0f);
-//		glutSolidCube(20);
-		drawSkybox();
-
+	//glColor3f(1.0f, 0.0f, 0.0f);
+	drawSkybox();
+	//glutSolidCube(20);
 	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(20, 50, -20);
+	glutSolidCube(5);
+	glPopMatrix();
+	temp.draw();
+		
+	glPopMatrix();
+	
 	
 
 	glFlush();
@@ -259,8 +269,8 @@ void idleFunc()
 int main(int argc, char** argv)
 {
 	// set window values
-	win.width = 640;
-	win.height = 480;
+	win.width = 1600;
+	win.height = 1000;
 	win.title = "Robot Siege";
 	win.field_of_view_angle = 45;
 	win.z_near = 1.0f;

@@ -11,7 +11,7 @@ public:
 	~Model(void);
 	void draw();
 	void idle();
-	void moveTo();
+	void moveTo(double destX, double destY, double destZ);
 
 	enum State
 	{
@@ -22,8 +22,19 @@ public:
 
 
 private:
+	//world coordinates of the model
 	double x, y, z;
-	Quaternion<double> orientation;
+	//how close can the model be for it to be considered at destination when using moveTo
+	double distanceTolerance;
+	//world orientation of the model, as a quaternion
+	Quaternion<double> orientation, initialOrientation;
+	//Forward vector of model
+	Vector3d forward;
+	//rotation and movement speed
+	double rotationSpeed, movementSpeed;
+	//used for rotating to destination
+	double t;
+
 	State currentState;
 
 	//model variable however it's done
