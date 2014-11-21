@@ -64,6 +64,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="imageloader.h" />
     <ClInclude Include="includeHeader.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Plane.h" />
@@ -73,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="imageloader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Plane.cpp" />
