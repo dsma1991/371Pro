@@ -21,22 +21,16 @@ Robot::~Robot(void)
 {
 }
 
-
+//draws the correct model
 void Robot::draw()
 {
 	glPushMatrix();
 	Model::draw();
 	robotModel.drawModel();
-
-	/*for(int i = 0; i < missiles.size(); ++i)
-	{
-		missiles[i].draw();
-	}*/
-
-
 	glPopMatrix();
 }
 
+//determines robot's behaviour according to its class variables
 bool Robot::idle(){
 	Model::idle();
 	/*for(std::vector<Model>::iterator it = missiles.begin(); it != missiles.end();++it)
@@ -52,6 +46,7 @@ bool Robot::idle(){
 	return true;
 }
 
+//moves to given coordinates
 void Robot::moveTo(double destX, double destZ){
 	Model::moveTo(destX, y, destZ);
 }

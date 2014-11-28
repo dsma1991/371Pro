@@ -16,8 +16,6 @@ void Terrain::TerrainSurface(void){
 	glPushMatrix();
 		glPushAttrib(GL_ENABLE_BIT);
 		glEnable(GL_TEXTURE_2D);
-	//	glDisable(GL_DEPTH_TEST);
-	//	glDisable(GL_LIGHTING);
 		glDisable(GL_BLEND);
 
 		float terrainSegmentSize= 80.0f;
@@ -44,7 +42,6 @@ void Terrain::DrawTerrain(void){
 	float segmentSize = 80.0f;
 	float doubleTranslate = segmentSize*2.0f;
 	float fullTranslate = segmentSize*30.0f;
-			//	TerrainSurface();
 			for(int i = 0; i <=10; i++){
 				TerrainSurface();
 				glPushMatrix();

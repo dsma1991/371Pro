@@ -36,9 +36,11 @@ Camera::Camera(double initialEyeX, double initialEyeY, double initialEyeZ,
 				   upX = initialUpX;
 				   upY = initialUpY;
 				   upZ = initialUpZ;
+
 				   //rotation and movement speed
 				   rotationSpeed = DEFAULT_CAMERA_ROTATION_SPEED;
 				   movementSpeed = DEFAULT_CAMERA_MOVEMENT_SPEED;
+
 				   currentState = Idle;
 				   cameraMode = Pan;
 				   movementType = Smooth;
@@ -51,6 +53,7 @@ Camera::~Camera(void)
 {
 }
 
+ //Calls gluLookAt
 void Camera::displayCamera(){
 
 	gluLookAt(	eyeX, eyeY, eyeZ,
@@ -59,7 +62,7 @@ void Camera::displayCamera(){
 
 }
 
-// move camera to destination
+// move camera to destination coordinates using the mode and move type specified
 void Camera::cameraTo(double x, double y, double z, CameraMode mode, Movement moveType){ 
 
 	if (currentState == Idle){
@@ -130,6 +133,7 @@ void Camera::moveRotateCameraTo(){
 	eyeZ += movementSpeed * moveDirection.z();
 }
 
+//determines camera's behaviour according to its class variables
 void Camera::idle(){
 
 	switch (currentState){
@@ -176,6 +180,7 @@ void Camera::moving(){
 	}
 }
 
+//looks at a point using the move type specified
 void Camera::lookAt(double x, double y, double z, Movement moveType){
 	if (currentState == Idle){
 		model = NULL;
@@ -196,10 +201,8 @@ void Camera::snapLookAt(){
 	lookAtY = destLookAtY;
 	lookAtZ = destLookAtZ;
 }
-void Camera::smoothLookAt(){
 
-}
-
+//set a model to continuously look at
 void Camera::lookAt(Model* modelToLook){
 	model = modelToLook;
 }

@@ -9,12 +9,14 @@ public:
 	ModelLoader(void);
 	~ModelLoader(void);
 
+	//draws the model from class varibles
 	void ModelLoader::drawModel();
 
+	//loads in a model from a .obj file
 	void ModelLoader::readInModel(std::string filename);
 
 private:
-//Titan
+
 int random;
 std::vector<Coordinates> vertices;
 std::vector<Coordinates> normals;

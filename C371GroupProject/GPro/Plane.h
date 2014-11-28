@@ -9,8 +9,5 @@ public:
 
 	void fire();
 
-
-private:
-	//vector<Missiles> missilesShot; //vector containing the missiles shot
 };
 

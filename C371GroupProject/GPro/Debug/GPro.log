@@ -1,19 +1,32 @@
-﻿Build started 25/11/2014 7:04:50 PM.
-     1>Project "C:\Users\Arteum Kanda\Desktop\Graphics project Djahid\GPro\GPro.vcxproj" on node 2 (Build target(s)).
+﻿Build started 28/11/2014 3:53:11 PM.
+     1>Project "C:\Users\Arteum Kanda\Documents\GitHub\371Pro\C371GroupProject\GPro\GPro.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IEigen /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IEigen /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Camera.cpp Command.cpp Model.cpp ModelLoader.cpp Plane.cpp Robot.cpp Wall.cpp main.cpp
          main.cpp
-     1>c:\users\arteum kanda\desktop\graphics project djahid\gpro\main.cpp(161): warning C4101: 'temp' : unreferenced local variable
-     1>c:\users\arteum kanda\desktop\graphics project djahid\gpro\main.cpp(221): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\arteum kanda\desktop\graphics project djahid\gpro\main.cpp(222): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\arteum kanda\desktop\graphics project djahid\gpro\main.cpp(225): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\arteum kanda\desktop\graphics project djahid\gpro\main.cpp(642): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\arteum kanda\desktop\graphics project djahid\gpro\main.cpp(828): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\arteum kanda\desktop\graphics project djahid\gpro\main.cpp(844): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\arteum kanda\desktop\graphics project djahid\gpro\main.cpp(901): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\main.cpp(154): warning C4101: 'temp' : unreferenced local variable
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\main.cpp(214): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\main.cpp(215): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\main.cpp(218): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\main.cpp(643): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\main.cpp(829): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\main.cpp(845): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\main.cpp(902): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+         ModelLoader.cpp
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\modelloader.cpp(18): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\modelloader.cpp(19): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\modelloader.cpp(22): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\arteum kanda\documents\github\371pro\c371groupproject\gpro\modelloader.cpp(80): warning C4101: 'temp' : unreferenced local variable
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         Wall.cpp
+         Robot.cpp
+         Plane.cpp
+         Model.cpp
+         Command.cpp
+         Camera.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Arteum Kanda\Desktop\Graphics project Djahid\Debug\GPro.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Arteum Kanda\Desktop\Graphics project Djahid\Debug\GPro.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Arteum Kanda\Desktop\Graphics project Djahid\Debug\GPro.lib" /MACHINE:X86 Debug\Camera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Arteum Kanda\Documents\GitHub\371Pro\C371GroupProject\Debug\GPro.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Arteum Kanda\Documents\GitHub\371Pro\C371GroupProject\Debug\GPro.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Arteum Kanda\Documents\GitHub\371Pro\C371GroupProject\Debug\GPro.lib" /MACHINE:X86 Debug\Camera.obj
          Debug\Command.obj
          Debug\imageloader.obj
          Debug\main.obj
@@ -25,9 +38,9 @@
          Debug\Robot.obj
          Debug\Terrain.obj
          Debug\Wall.obj
-         GPro.vcxproj -> C:\Users\Arteum Kanda\Desktop\Graphics project Djahid\Debug\GPro.exe
-     1>Done Building Project "C:\Users\Arteum Kanda\Desktop\Graphics project Djahid\GPro\GPro.vcxproj" (Build target(s)).
+         GPro.vcxproj -> C:\Users\Arteum Kanda\Documents\GitHub\371Pro\C371GroupProject\Debug\GPro.exe
+     1>Done Building Project "C:\Users\Arteum Kanda\Documents\GitHub\371Pro\C371GroupProject\GPro\GPro.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:07.27
+Time Elapsed 00:00:05.96

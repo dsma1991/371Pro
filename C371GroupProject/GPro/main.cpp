@@ -86,16 +86,8 @@ std::queue<Command> cameraCommands;
 //robot commands
 std::vector<std::queue<Command>> robotCommands;
 
-//Titan
-/*
-std::vector<Coordinates> titanVertices;
-std::vector<Coordinates> titanNormals;
-std::vector<Coordinates> titanTextures;
-std::vector<std::vector<std::vector<int>>> titanFaceVertex;
-std::vector<std::vector<std::vector<int>>> titanFaceNormal;
-std::vector<std::vector<std::vector<int>>> titanFaceTexture;
-std::vector<std::string> texNames;*/
 
+//wall
 std::vector<Coordinates> WallVertices;
 std::vector<Coordinates> WallNormals;
 std::vector<Coordinates> WallTextures;
@@ -104,6 +96,7 @@ std::vector<std::vector<std::vector<int>>> WallFaceNormal;
 std::vector<std::vector<std::vector<int>>> WallFaceTexture;
 std::vector<std::string> wallTexNames;
 
+//guardian
 std::vector<Coordinates> GuardianVertices;
 std::vector<Coordinates> GuardianNormals;
 std::vector<Coordinates> GuardianTextures;
@@ -112,7 +105,7 @@ std::vector<std::vector<std::vector<int>>> GuardianFaceNormal;
 std::vector<std::vector<std::vector<int>>> GuardianFaceTexture;
 std::vector<std::string> GuardianTexNames;
 
-
+//loads a model from a file
 void readInModel(std::string filename, std::vector<std::string> *textureNames, std::vector<Coordinates> *vertices, std::vector<Coordinates> *normals, std::vector<Coordinates> *textures, 
 				 std::vector<std::vector<std::vector<int>>> *faceVertex, std::vector<std::vector<std::vector<int>>> *faceNormal, std::vector<std::vector<std::vector<int>>> *faceTexture)
 {
@@ -213,11 +206,11 @@ void readInModel(std::string filename, std::vector<std::string> *textureNames, s
 	fin.close();
 }
 
-
+//draws a model from the given vertices, normals and texture coordinates
 void drawModel(std::vector<Coordinates> *vertices, std::vector<Coordinates> *normals, std::vector<Coordinates> *textures, 
 			   std::vector<std::vector<std::vector<int>>> *faceVertex, std::vector<std::vector<std::vector<int>>> *faceNormal, std::vector<std::vector<std::vector<int>>> *faceTexture)
 {
-	// also need to have texture reading and whatever
+	// also need to have texture reading
 	for(int k = 0; k < faceVertex->size(); ++k)
 		for(int i = 0; i < (*faceVertex)[k].size(); ++i)
 		{
@@ -333,11 +326,12 @@ void init(void)
 	glCullFace(GL_BACK);
 	glEnable(GL_CULL_FACE);// hide all CCW Faces
 
-	//Model
-	//readInModel("mech.obj", &texNames, &titanVertices, &titanNormals, &titanTextures, &titanFaceVertex, &titanFaceNormal, &titanFaceTexture);
+	//Model loading
 
+	//wall
 	readInModel("Wall.obj", &wallTexNames, &WallVertices, &WallNormals, &WallTextures, &WallFaceVertex, &WallFaceNormal, &WallFaceTexture);
 
+	//guardian
 	readInModel("guardian.obj", &GuardianTexNames, &GuardianVertices, &GuardianNormals, &GuardianTextures, &GuardianFaceVertex, &GuardianFaceNormal, &GuardianFaceTexture);
 
 	//attacking force
@@ -353,6 +347,7 @@ void init(void)
 	robots.push_back(Robot(-450, 450));//robot 6
 	robots.push_back(Robot(-400, 480));//robot 7
 
+	//all the commands for the robots in the scene
 	#pragma region RobotCommands
 	
 	//robot 1
@@ -400,7 +395,7 @@ void init(void)
 
 	#pragma endregion
 
-
+	//all the commands for the camera in the scene
 	#pragma region CameraCommands
 	cameraCommands.push(Command(&camera, Command::CameraMoveRotateSmooth, 0, -77*2, -45.0, 487));
 	cameraCommands.push(Command(&camera, Command::CameraMoveRotateSmooth, 0, -146*2, -45.0, 452.0));
@@ -449,6 +444,7 @@ void init(void)
 
 }
 
+//sets up the sunlight
 void Sunlight(){
 	glEnable(GL_LIGHT0);
 	glLightfv(GL_LIGHT0, GL_POSITION, light0Position);
@@ -457,6 +453,7 @@ void Sunlight(){
 	glLightfv(GL_LIGHT0, GL_SPECULAR, whiteLight);
 }
 
+//draws particles from the particle system
 void DrawParticles (void)
 {
 	int i;
@@ -502,6 +499,7 @@ void DrawParticles (void)
 	}
 }
 
+//draws the skybox
 void drawSkybox(){
 	glPushMatrix();
 	glPushAttrib(GL_ENABLE_BIT);
@@ -587,6 +585,7 @@ void drawSkybox(){
 	glPopMatrix();
 }
 
+//draws the transparent guardian
 void drawTransparentObject(){
 	glPushMatrix();
 	glEnable(GL_BLEND);
@@ -603,6 +602,7 @@ void drawTransparentObject(){
 	glPopMatrix();
 }
 
+//draw function for glut
 void display(void)
 {	
 	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -630,6 +630,7 @@ void display(void)
 	SpotLights();
 	glPopMatrix();
 
+	//draws the robots
 	glPushMatrix();
 	glEnable(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, _dalekTexture);
@@ -643,12 +644,9 @@ void display(void)
 		robots[i].draw();
 	}
 
-	glTranslatef(0.0,-56.0,250.0);
-	//drawModel(&titanVertices, &titanNormals, &titanTextures, &titanFaceVertex, &titanFaceNormal, &titanFaceTexture);
-	glTranslatef(50.0, 0.0, 0.0);
-	//	drawModel(&titanVertices, &titanNormals, &titanTextures, &titanFaceVertex, &titanFaceNormal, &titanFaceTexture);
 	glPopMatrix();
 
+	//draws the wall
 	glPushMatrix();
 	glDisable(GL_CULL_FACE);
 	glEnable(GL_TEXTURE_2D);
@@ -677,6 +675,7 @@ void display(void)
 	glEnable(GL_CULL_FACE);
 	glPopMatrix();
 
+	//draws the particles
 	glPushMatrix();
 	glTranslated(20, 10, -20);
 	glDisable(GL_CULL_FACE);
@@ -692,13 +691,13 @@ void display(void)
 	//____________________Don't Draw After this comment___________________________________//
 	glPopMatrix();
 
-	//	glPopMatrix();
 	glFlush();
 	glutSwapBuffers();
 }
 
 int WireFrame = 0;			// Flag for wire frame mode
 
+//toggles between wireframes and solids
 void toggleWireFrames(){
 	WireFrame = 1-WireFrame;
 	if (WireFrame)
@@ -708,18 +707,21 @@ void toggleWireFrames(){
 	glutPostRedisplay();
 }
 
+//sets lighting to night time
 void Night(){
 	glDisable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 	emissionLight[2] = 0.2;
 }
 
+//sets lighting to day time
 void Daytime(){
 	glDisable(GL_LIGHT1);
 	glEnable(GL_LIGHT0);
 	emissionLight[2] = 0.0;
 }
 
+//keyboard inputs
 void keyboard (unsigned char key, int x, int y)
 {
 	switch (key)
@@ -806,12 +808,11 @@ void specialKey(int key, int x, int y) {
 	}
 
 
-
-	// look at 2-d/3-d transformations of models for possible transformations of camera, maybe they also apply?
-	glutPostRedisplay();		// Redraw the scene
+	// Redraw the scene
+	glutPostRedisplay();	
 }
 
-
+//idle function for glut
 void idleFunc()
 {
 	if(camera.getState() == Camera::Idle){

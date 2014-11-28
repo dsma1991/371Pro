@@ -12,13 +12,20 @@ public:
 	Model(void);
 	Model(double startX, double startY, double startZ);
 	~Model(void);
-	void virtual draw();
-	bool virtual idle();
-	bool checkCollision(double collisionX, double collisionY, double collisionZ);
-	void virtual moveTo(double destX, double destY, double destZ);
-	Vector3d getCoordinates();
 
-	//void virtual fire();
+	//draws the model and moves it to the correct position and orientation, called by child classes
+	void virtual draw();
+
+	//determines model's behaviour according to its class variables
+	bool virtual idle();
+
+	//checks if this model has collided with another
+	bool checkCollision(double collisionX, double collisionY, double collisionZ);
+
+	//orients towards the point, followed by moving towards it
+	void virtual moveTo(double destX, double destY, double destZ);
+
+	Vector3d getCoordinates();
 
 	enum State
 	{
@@ -34,21 +41,25 @@ public:
 protected:
 	//world coordinates of the model
 	double x, y, z;
+
 	//destination coordinates
 	double moveToX, moveToY, moveToZ;
+
 	//how close can the model be for it to be considered at destination when using moveTo
 	double distanceTolerance;
+
 	//Forward vector of model
 	Vector3d forward, modelLookAt;
+
 	//rotation and movement speed
 	double rotationSpeed, movementSpeed;
+
 	//angle of model on the y-axis
 	double angle, angleBetween, traversedAngle;
 
 	State currentState;
-	//std::vector<Model> missiles;
-	//bool lightAvailability[4]; // true if that light available, false otherwise -- if needed
 
+	//moves model towards destination
 	void moving();
 };
 

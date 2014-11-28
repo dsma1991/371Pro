@@ -11,10 +11,10 @@ ModelLoader::~ModelLoader(void)
 {
 }
 
-
+//draws the model from class varibles
 void ModelLoader::drawModel()
 {
-	// also need to have texture reading and whatever
+	// also need to have texture reading
 	for(int k = 0; k < faceVertex.size(); ++k)
 		for(int i = 0; i < faceVertex[k].size(); ++i)
 		{
@@ -32,6 +32,7 @@ void ModelLoader::drawModel()
 		}
 }
 
+//loads in a model from a .obj file
 void ModelLoader::readInModel(std::string filename)
 {
 	std::ifstream fin(filename.c_str());

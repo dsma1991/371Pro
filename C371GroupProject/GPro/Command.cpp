@@ -10,6 +10,7 @@ Command::~Command(void)
 {
 }
 
+//moves robot to a position
 Command::Command(Robot* commandingRobot, CommandType type, int repeatNumber, double destX, double destY, double destZ){
 	robot = commandingRobot;
 	camera = NULL;
@@ -21,6 +22,7 @@ Command::Command(Robot* commandingRobot, CommandType type, int repeatNumber, dou
 	followingModel = NULL;
 }
 
+//moves camera to a position using the given command type
 Command::Command(Camera* commandingCamera, CommandType type, int repeatNumber, double destX, double destY, double destZ){
 	robot = NULL;
 	camera = commandingCamera;
@@ -32,6 +34,7 @@ Command::Command(Camera* commandingCamera, CommandType type, int repeatNumber, d
 	followingModel = NULL;
 }
 
+//moves camera to follow a model
 Command::Command(Camera* commandingCamera, CommandType type, int repeatNumber, Model* modelToFollow){
 	robot = NULL;
 	camera = commandingCamera;
@@ -43,7 +46,7 @@ Command::Command(Camera* commandingCamera, CommandType type, int repeatNumber, M
 	z = 0;
 }
 
-//true if it's gonna be repeteated, false if no repeat ( = 0)
+//performs the command, returns true if the command is to be repeated
 bool Command::execute(){
 
 	if(robot != NULL){ //execute model command

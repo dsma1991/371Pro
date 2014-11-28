@@ -1,5 +1,4 @@
-//include all shit here
-
+//include this header along with #pragma once
 
 #include <stdlib.h>
 #include <GL/glut.h>   
