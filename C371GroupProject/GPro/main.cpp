@@ -259,6 +259,19 @@ GLuint loadTexture(Image* image){
 	return textureID;
 }
 
+GLuint loadMipmappedTexture(Image *image) {
+    GLuint textureId;
+    glGenTextures(1, &textureId);
+    glBindTexture(GL_TEXTURE_2D, textureId);
+    gluBuild2DMipmaps(GL_TEXTURE_2D,
+                      GL_RGB,
+                      image->width, image->height,
+                      GL_RGB,
+                      GL_UNSIGNED_BYTE,
+                      image->pixels);
+    return textureId;
+}
+
 // Initiliaze the OpenGL window
 void init(void)
 {
@@ -294,8 +307,8 @@ void init(void)
 	_skyboxTexture1 = loadTexture(skyboxTexture);
 	delete(skyboxTexture);
 
-	Image* terrainTexture = loadBMP("terrainTexture.bmp");
-	_terrainTexture1 = loadTexture(terrainTexture);
+	Image* terrainTexture = loadBMP("terrainTextures.bmp");
+	_terrainTexture1 = loadMipmappedTexture(terrainTexture);
 	delete(terrainTexture);
 
 	Image* dalekTexture1 = loadBMP("mech.bmp");
@@ -620,8 +633,8 @@ void display(void)
 	glPushMatrix();
 	//Terrain
 	glBindTexture(GL_TEXTURE_2D, _terrainTexture1);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,  GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	terrainObject.DrawTerrain();
 	glPopMatrix();
 
